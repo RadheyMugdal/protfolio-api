@@ -6,19 +6,10 @@ import { type } from 'os';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/tmp/uploads'); // Use '/tmp/uploads' instead of '/var/task/uploads'
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'uploads/' });
 app.get('/', (req, res) => {
   res.json({ message: 'Hello World!' });
-});
+})
 
 app.post('/process_csv', upload.single('file'), (req, res) => {
   
