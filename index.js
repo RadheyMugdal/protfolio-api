@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const upload = multer({ dest: 'uploads/' });
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.json({ message: 'Hello World!' });
 });
 
 app.post('/process_csv', upload.single('file'), (req, res) => {
